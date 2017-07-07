@@ -45,6 +45,7 @@ class PullRefresh {
     if (this.loading) {
       return;
     }
+    window.__YOU_SHOULD_LOOK_AT_THIS = true;
     const {scroll} = this;
     const top = -scroll.getScrollTop();
     const {maxAmplitude, refresh, loadMore} = this.options;
@@ -80,6 +81,10 @@ class PullRefresh {
   }
 
   ontouchend(e) {
+    if (!window.__YOU_SHOULD_LOOK_AT_THIS) {
+      return;
+    }
+    window.__YOU_SHOULD_LOOK_AT_THIS = false;
     const top = this.scroll.getScrollTop();
     const {refresh, loadMore} = this.options;
     if (refresh) {
