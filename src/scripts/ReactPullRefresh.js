@@ -1,5 +1,6 @@
-import React, {PropTypes, Component} from 'react';
-import Scroll from 'reactjs-scroll';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import Scroll from '../reactjs-scroll/scripts/index';
 import PullRefresh from './PullRefresh';
 import '../sass/pull-refresh.scss';
 
@@ -31,10 +32,10 @@ class ReactPullRefresh extends Component {
     refresh: true,
     loadMore: true
   };
-
+  
   componentDidMount() {
     //初始化 Scroll 实例
-    const {container, ptrEl, scrollComponent, moreEl} = this.refs;
+    const {container, ptrEl, scrollComponent, moreEl} = this.domRefs;
     const {
       refreshCallback, loadMoreCallback, hasMore,
       maxAmplitude, loadMoreThrottle, refresh, loadMore
@@ -53,7 +54,6 @@ class ReactPullRefresh extends Component {
       loadMore
     });
   }
-
   componentDidUpdate() {
     const {hasMore} = this.props;
     this.pullRefresh.setMoreStatus(hasMore);
@@ -62,7 +62,7 @@ class ReactPullRefresh extends Component {
   componentWillUnmount() {
     this.pullRefresh.unmount(true);
   }
-
+  domRefs = {};
   render() {
     const {
       className, children, scrollBar, maxAmplitude, debounceTime, throttleTime, deceleration,
@@ -81,19 +81,19 @@ class ReactPullRefresh extends Component {
       easing
     };
     return (
-      <div className={`rc-pull-refresh ${className}`} ref="container">
-        {refresh ? (<div ref="ptrEl" className="rc-ptr-box">
+      <div className={`rc-pull-refresh ${className}`} ref={ref => {this.domRefs.container = ref}}>
+        {refresh ? (<div ref={ref => {this.domRefs.ptrEl = ref}} className="rc-ptr-box">
           <div className="rc-ptr-container">
             <div className="rc-ptr-image"></div>
           </div>
         </div>) : null}
 
-        <Scroll ref="scrollComponent" {...scrollProp}>
+        <Scroll ref={ref => {this.domRefs.scrollComponent = ref}} {...scrollProp}>
           {children}
         </Scroll>
         {
           loadMore ? (
-            <div className="rc-load-more" ref="moreEl"></div>
+            <div className="rc-load-more" ref={ref => {this.domRefs.moreEl = ref}}></div>
           ) : null
         }
       </div>
