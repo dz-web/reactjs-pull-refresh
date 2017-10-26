@@ -1,5 +1,5 @@
 {
-  "name": "reactjs-pull-refresh-jt",
+  "name": "@dz-web/reactjs-pull-refresh-jt",
   "version": "0.6.2",
   "author": {
     "name": "Linder Wang",
@@ -15,7 +15,9 @@
     "component"
   ],
   "main": "dist/index.js",
-  "scripts": {},
+  "scripts": {
+    "pub": "npm publish --access public"
+  },
   "dependencies": {
     "prop-types": "^15.6.0",
     "component-raf": "^1.2.0",

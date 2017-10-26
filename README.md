@@ -1,3 +1,14 @@
+## 警告  请勿使用，此处升级至react 16，是为了让旧代码正常运行
+
+**请勿使用**
+**请勿使用**
+**请勿使用**
+**请勿使用**
+**请勿使用**
+**请勿使用**
+**请勿使用**
+
+
 # reactjs-pull-refresh
 
 This is a react component for pull down refresh.
